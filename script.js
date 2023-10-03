@@ -32,6 +32,10 @@ function updateProgress() {
     timestamp.innerHTML = `${minutes}:${seconds}`;
 }
 
+function setProgress() {
+    video.currentTime = (+progress.value * video.duration) / 100; //adding plus sign makes it a number, since progress.value returns a string
+}
+
 function updateIcon() {
     if (video.paused) {
         play.innerHTML = `<i class="fa fa-play fa-2x"></i>`;
@@ -46,3 +50,5 @@ video.addEventListener('click', playPause);
 video.addEventListener('play', updateIcon);
 video.addEventListener('pause', updateIcon);
 video.addEventListener('timeupdate', updateProgress);
+progress.addEventListener('click', setProgress);
+
