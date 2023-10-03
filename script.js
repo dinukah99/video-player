@@ -17,6 +17,10 @@ function stopVideo() {
     video.currentTime = 0;
 }
 
+function updateProgress() {
+    progress.value = (video.currentTime / video.duration * 100);
+}
+
 function updateIcon() {
     if (video.paused) {
         play.innerHTML = `<i class="fa fa-play fa-2x"></i>`;
@@ -26,7 +30,8 @@ function updateIcon() {
 }
 
 play.addEventListener('click', playPause);
+stop.addEventListener('click', stopVideo);
 video.addEventListener('click', playPause);
 video.addEventListener('play', updateIcon);
 video.addEventListener('pause', updateIcon);
-stop.addEventListener('click', stopVideo);
+video.addEventListener('timeupdate', updateProgress);
